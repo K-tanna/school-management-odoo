@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- STUDENT GRAPH -->
+    <record id="view_school_student_graph" model="ir.ui.view">
+        <field name="name">school.student.graph</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <graph string="Students by Class" type="bar">
+                <field name="class_id" type="row"/>
+                <field name="id" type="measure" operator="count"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- STUDENT PIVOT -->
+    <record id="view_school_student_pivot" model="ir.ui.view">
+        <field name="name">school.student.pivot</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <pivot string="Student Analysis">
+                <field name="class_id" type="row"/>
+                <field name="gender" type="col"/>
+                <field name="id" type="measure" operator="count"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- STUDENT REPORT ACTION -->
+    <record id="action_school_student_report" model="ir.actions.act_window">
+        <field name="name">Student Analysis</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="view_id" ref="view_school_student_graph"/>
+    </record>
+
+</odoo>

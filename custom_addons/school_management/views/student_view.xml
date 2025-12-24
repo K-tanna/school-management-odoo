@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Student List View -->
+    <record id="view_school_student_list" model="ir.ui.view">
+        <field name="name">school.student.list</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <list string="Students">
+                <field name="image_1920" widget="image"/>
+                <field name="name"/>
+                <field name="roll_no"/>
+                <field name="gender"/>
+                <field name="dob"/>
+                <field name="city"/>
+                <field name="addmission"/>
+                <field name="class_id"/>
+                <field name="fees_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Student Form View -->
+    <record id="view_school_student_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <sheet>
+                                    <!-- Smart Button -->
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_class"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-university"
+                            modifiers="{'invisible': [('class_id', '=', False)]}">
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">Class</span>
+                        </div>
+                    </button>
+                    <button name="action_view_fees"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-money"
+                            modifiers="{'invisible': [('fees_count','=',0)]}">
+                        <field name="fees_count" widget="statinfo" string="Fees"/>
+                    </button>
+
+                </div>
+
+                    <group>
+                        <field name="image_1920" widget="image" class="oe_avatar"/>
+                    </group>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="roll_no" readonly="1"/>
+                        <field name="gender"/>
+                        <field name="dob"/>
+                        <field name="age" readonly="1"/>
+                        <field name="height"/>
+                    </group>
+
+                    <group string="Academic">
+                        <field name="class_id"/>
+                <field name="fees_id"/>
+                        <field name="teacher_ids" widget="many2many_tags"/>
+                        <field name="addmission"/>
+                    </group>
+
+
+
+                    <group string="Address">
+                        <field name="city"/>
+                        <field name="address"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--     <record id="view_student_graph_by_class" model="ir.ui.view">
+        <field name="name">school.student.graph.by.class</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <graph string="Students per Class" type="bar">
+                <field name="class_id" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>-->
+
+    <!-- Student Action -->
+    <record id="action_school_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

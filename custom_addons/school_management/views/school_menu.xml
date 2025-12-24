@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="school_root_menu"
+              name="School Management"
+              sequence="10"/>
+
+    <menuitem id="school_student_menu"
+              name="Students"
+              parent="school_root_menu"
+              action="action_school_student"
+              sequence="10"/>
+
+    <menuitem id="school_teacher_menu"
+              name="Teachers"
+              parent="school_root_menu"
+              action="action_school_teacher"
+              sequence="20"/>
+
+    <menuitem id="school_class_menu"
+              name="Classes"
+              parent="school_root_menu"
+              action="action_school_class"
+              sequence="30"/>
+
+        <menuitem id="menu_school_fees"
+              name="Fees"
+              parent="school_root_menu"
+              action="action_school_fees"
+              sequence="40"/>
+              <menuitem id="menu_fees_payment"
+              name="Fees payment"
+              parent="menu_school_fees"
+              action="action_school_fees_payment"
+              sequence="20"/>
+
+          <menuitem id="menu_school_exam"
+            name="Exams"
+            parent="school_root_menu"
+            action="action_school_exam"
+            sequence="50"/>
+
+          <menuitem id="menu_school_exam_result"
+            name="Exam Result"
+            parent="school_root_menu"
+            action="action_school_exam_result"
+            sequence="60"/>
+              <menuitem id="school_reports_menu"
+              name="Reports"
+              parent="school_root_menu"
+              sequence="90"/>
+
+    <!-- STUDENT REPORT -->
+    <menuitem id="menu_student_report"
+              name="Student Analysis"
+              parent="school_reports_menu"
+              action="action_school_student_report"
+              sequence="10"/>
+
+    <!-- FEES REPORT -->
+    <menuitem id="menu_fees_report"
+              name="Fees Analysis"
+              parent="school_reports_menu"
+              action="action_school_fees_report"
+              sequence="20"/>
+
+  
+</odoo>
