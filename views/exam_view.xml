@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- EXAM LIST -->
+  <record id="view_school_exam_list" model="ir.ui.view">
+    <field name="name">school.exam.list</field>
+    <field name="model">school.exam</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="class_id"/>
+        <field name="subject"/>
+        <field name="exam_date"/>
+        <field name="max_marks"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- EXAM FORM -->
+  <record id="view_school_exam_form" model="ir.ui.view">
+    <field name="name">school.exam.form</field>
+    <field name="model">school.exam</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <!--
+          <button name="action_view_results"
+                  type="object"
+                  class="oe_stat_button"
+                  icon="fa-graduation-cap"
+                  modifiers="{'invisible': [('result_count','=',0)]}">
+            <field name="result_count" widget="statinfo" string="Results"/>
+          </button>
+-->
+        </header>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="class_id"/>
+            <field name="subject"/>
+            <field name="exam_date"/>
+            <field name="max_marks"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- EXAM ACTION -->
+  <record id="action_school_exam" model="ir.actions.act_window">
+    <field name="name">Exams</field>
+    <field name="res_model">school.exam</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+</odoo>

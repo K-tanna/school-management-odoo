@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- FEES GRAPH -->
+    <record id="view_school_fees_graph" model="ir.ui.view">
+        <field name="name">school.fees.graph</field>
+        <field name="model">school.fees</field>
+        <field name="arch" type="xml">
+             <graph string="Fees Status Report">
+            <field name="status" type="row"/>
+            <field name="id" type="measure" operator="count"/>
+        </graph>
+        </field>
+    </record>
+    <record id="view_school_fees_amount_graph" model="ir.ui.view">
+    <field name="name">school.fees.amount.graph</field>
+    <field name="model">school.fees</field>
+    <field name="arch" type="xml">
+        <graph string="Fees Collection">
+            <field name="class_id" type="row"/>
+            <field name="paid_amount" type="measure"/>
+        </graph>
+    </field>
+</record>
+
+    <!-- FEES PIVOT -->
+<record id="view_school_fees_pivot" model="ir.ui.view">
+    <field name="name">school.fees.pivot</field>
+    <field name="model">school.fees</field>
+    <field name="arch" type="xml">
+        <pivot string="Fees Analysis">
+            <field name="class_id" type="row"/>
+            <field name="status" type="col"/>
+            <field name="paid_amount" type="measure" operator="count"/>
+        </pivot>
+    </field>
+</record>
+
+
+    <!-- FEES REPORT ACTION -->
+    <record id="action_school_fees_report" model="ir.actions.act_window">
+        <field name="name">Fees Analysis</field>
+        <field name="res_model">school.fees</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="view_id" ref="view_school_fees_graph"/>
+    </record>
+
+</odoo>

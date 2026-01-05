@@ -1,0 +1,92 @@
+<odoo>
+
+    <!-- ========================= -->
+    <!-- FEES PAYMENT LIST VIEW -->
+    <!-- ========================= -->
+    <record id="view_school_fees_payment_list" model="ir.ui.view">
+        <field name="name">school.fees.payment.list</field>
+        <field name="model">school.fees.payment</field>
+        <field name="arch" type="xml">
+            <list string="Payments">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="class_id"/>
+                <field name="date"/>
+                <field name="amount"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="extra_amount"/>
+                <field name="payment_mode"/>
+            </list>
+        </field>
+    </record>
+    
+    <!-- ========================= -->
+    <!-- FEES PAYMENT FORM VIEW -->
+    <!-- ========================= -->
+    <record id="view_school_fees_payment_form" model="ir.ui.view">
+        <field name="name">school.fees.payment.form</field>
+        <field name="model">school.fees.payment</field>
+        <field name="arch" type="xml">
+            <form string="Fees Payment">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                    </group>
+
+                    <group>
+                        <field name="fees_id"/>
+                        <field name="student_id" readonly="1"/>
+                        <field name="class_id" readonly="1"/>
+                    </group>
+
+                    <group>
+                        <field name="amount"/>
+                        <field name="extra_amount"/>
+                        <field name="payment_mode"/>
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_school_fees_payment_search" model="ir.ui.view">
+        <field name="name">school.fees.payment.search</field>
+        <field name="model">school.fees.payment</field>
+        <field name="arch" type="xml">
+            <search string="school fees payment">
+
+                <field name="name"/>
+                <field name="student_id"/>
+                <searchpanel>
+                <field name="class_id"/>
+                </searchpanel>
+                <separator/>
+                <filter string="Today"  name="today" domain="[('date','=',context_today())]"/>
+                <filter string="Cash Payments" name="cash_payment" domain="[('payment_mode','=','cash')]"/>
+                <filter string="UPI Payments" name="upi_payment" domain="[('payment_mode','=','upi')]"/>
+                <filter string="Card Payments" name="card_payment" domain="[('payment_mode','=','card')]"/>
+                <separator/>
+                <group>
+                    <filter string="Student" name="group_student" context="{'group_by':'student_id'}"/>
+                    <filter string="Class" name="group_class" context="{'group_by':'class_id'}"/>
+                    <filter string="Date" name="group_date" context="{'group_by':'date'}"/>
+
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- ========================= -->
+    <!-- FEES PAYMENT ACTION -->
+    <!-- ========================= -->
+    <record id="action_school_fees_payment" model="ir.actions.act_window">
+        <field name="name">Payments</field>
+        <field name="res_model">school.fees.payment</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_school_fees_payment_search"></field>
+        <field name="context">{}</field>
+    </record>
+
+</odoo>

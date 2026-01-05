@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="seq_school_fees_payment" model="ir.sequence">
+        <field name="name">Fees Payment Receipt</field>
+        <field name="code">school.fees.payment</field>
+        <field name="prefix">FID/</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+</odoo>

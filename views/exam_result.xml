@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- RESULT LIST -->
+  <record id="view_school_exam_result_list" model="ir.ui.view">
+    <field name="name">school.exam.result.list</field>
+    <field name="model">school.exam.result</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="exam_id"/>
+        <field name="student_id"/>
+        <field name="class_id"/>
+        <field name="marks_obtained"/>
+        <field name="grade"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- RESULT FORM -->
+  <record id="view_school_exam_result_form" model="ir.ui.view">
+    <field name="name">school.exam.result.form</field>
+    <field name="model">school.exam.result</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="exam_id"/>
+            <field name="student_id"/>
+            <field name="class_id" readonly="1"/>
+            <field name="marks_obtained"/>
+            <field name="grade" readonly="1"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+<!--  <record id="view_exam_result_graph" model="ir.ui.view">
+    <field name="name">school.exam.result.graph</field>
+    <field name="model">school.exam.result</field>
+    <field name="arch" type="xml">
+        <graph string="Average Marks by Subject" type="bar">
+            <field name="exam_id" type="row"/>
+            <field name="marks_obtained" type="measure" operator="avg"/>
+        </graph>
+    </field>
+</record> -->
+
+
+  <!-- RESULT ACTION -->
+  <record id="action_school_exam_result" model="ir.actions.act_window">
+    <field name="name">Results</field>
+    <field name="res_model">school.exam.result</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+</odoo>
